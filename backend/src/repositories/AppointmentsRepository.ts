@@ -8,6 +8,10 @@ class AppointmentsRepository {
     this.appointments = [];
   }
 
+  public all(): Appointment[] {
+    return [...this.appointments];
+  }
+
   /**
    * Find a booked appointment to the same date
    */
