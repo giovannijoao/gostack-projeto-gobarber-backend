@@ -3,6 +3,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import User from '../models/User';
 import auth from '../config/auth';
+import AppError from '../errors/AppError';
 
 const { secret, expiresIn } = auth.jwt;
 
@@ -22,10 +23,10 @@ class AuthenticateUserService {
         email,
       },
     });
-    if (!user) throw new Error('Incorrect email/password combination');
+    if (!user) throw new AppError('Incorrect email/password combination', 401);
     const passwordMatched = await compare(password, user.password);
     if (!passwordMatched)
-      throw new Error('Incorrect email/password combination');
+      throw new AppError('Incorrect email/password combination', 401);
     // TODO: Put secret into environment file
     const token = sign({}, secret, {
       subject: user.id,
