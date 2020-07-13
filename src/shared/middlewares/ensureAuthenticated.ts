@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
-import auth from '../config/auth';
+import auth from '../../config/auth';
 import AppError from '../errors/AppError';
 
 const { secret } = auth.jwt;
