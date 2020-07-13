@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import auth from '@config/auth';
+import AppError from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
-import auth from '../../../config/auth';
-import AppError from '../../../shared/errors/AppError';
 
 const { secret, expiresIn } = auth.jwt;
 
