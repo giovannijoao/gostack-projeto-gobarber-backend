@@ -1,5 +1,6 @@
 import User from '../infra/typeorm/entities/User';
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
+import IFindAllUsersDTO from '../dtos/IFindAllUsersDTO';
 
 export default interface IUsersRepository {
   /** Find user by primary key */
@@ -10,4 +11,6 @@ export default interface IUsersRepository {
   create(data: ICreateUserDTO): Promise<User>;
   /** Saves an user */
   save(data: User): Promise<User>;
+  /** Return a list of users */
+  findAllUsers(data: IFindAllUsersDTO): Promise<User[]>;
 }
