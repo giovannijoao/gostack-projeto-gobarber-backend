@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import AppError from '@shared/errors/AppError';
 import { eachHourOfInterval } from 'date-fns';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import ListProviderMonthAvailabilityService from './ListProviderMonthAvailabilityService';
