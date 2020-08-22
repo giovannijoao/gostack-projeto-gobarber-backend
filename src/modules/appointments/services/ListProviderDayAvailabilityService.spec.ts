@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import { eachHourOfInterval } from 'date-fns';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import ListProviderDayAvailabilityService from './ListProviderDayAvailabilityService';
 
@@ -17,18 +16,20 @@ describe('ListProviderDayAvailability', () => {
     await Promise.all([
       fakeAppointmentsRepository.create({
         date: new Date(2020, 7, 20, 13),
-        provider_id: 'user',
+        provider_id: 'provider_id',
+        user_id: 'user_id',
       }),
       fakeAppointmentsRepository.create({
         date: new Date(2020, 7, 20, 14),
-        provider_id: 'user',
+        provider_id: 'provider_id',
+        user_id: 'user_id',
       }),
     ]);
     jest
       .spyOn(Date, 'now')
       .mockImplementationOnce(() => new Date(2020, 7, 20, 11).getTime());
     const availability = await listProvidersDayAvailability.execute({
-      provider_id: 'user',
+      provider_id: 'provider_id',
       year: 2020,
       month: 8,
       day: 20,

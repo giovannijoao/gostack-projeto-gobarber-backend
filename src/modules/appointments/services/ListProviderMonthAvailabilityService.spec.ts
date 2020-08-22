@@ -29,12 +29,13 @@ describe('ListProviderMonthAvailability', () => {
       ].map(date =>
         fakeAppointmentsRepository.create({
           date,
-          provider_id: 'user',
+          user_id: 'user_id',
+          provider_id: 'provider_id',
         }),
       ),
     );
     const availability = await listProvidersMonthAvailability.execute({
-      provider_id: 'user',
+      provider_id: 'provider_id',
       year: 2020,
       month: 8,
     });
