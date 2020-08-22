@@ -18,7 +18,6 @@ describe('ListProviderMonthAvailability', () => {
       start: new Date(2020, 7, 20, 8, 0, 0),
       end: new Date(2020, 7, 20, 17, 0, 0),
     });
-    console.log(fullfilledDayHours);
     await Promise.all(
       [
         new Date(2020, 7, 19, 8, 0, 0),

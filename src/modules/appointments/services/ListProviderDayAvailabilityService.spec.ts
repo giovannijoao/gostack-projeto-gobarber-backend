@@ -14,23 +14,19 @@ describe('ListProviderDayAvailability', () => {
     );
   });
   it('should be able to list the day availability from provider', async () => {
-    const fullfilledDayHours = eachHourOfInterval(
-      {
-        start: new Date(2020, 7, 20, 8, 0, 0),
-        end: new Date(2020, 7, 20, 12, 0, 0),
-      },
-      {
-        step: 2,
-      },
-    );
-    await Promise.all(
-      fullfilledDayHours.map(date =>
-        fakeAppointmentsRepository.create({
-          date,
-          provider_id: 'user',
-        }),
-      ),
-    );
+    await Promise.all([
+      fakeAppointmentsRepository.create({
+        date: new Date(2020, 7, 20, 13),
+        provider_id: 'user',
+      }),
+      fakeAppointmentsRepository.create({
+        date: new Date(2020, 7, 20, 14),
+        provider_id: 'user',
+      }),
+    ]);
+    jest
+      .spyOn(Date, 'now')
+      .mockImplementationOnce(() => new Date(2020, 7, 20, 11).getTime());
     const availability = await listProvidersDayAvailability.execute({
       provider_id: 'user',
       year: 2020,
@@ -40,19 +36,19 @@ describe('ListProviderDayAvailability', () => {
     expect(availability).toEqual(
       expect.arrayContaining([
         {
-          hour: 8,
-          available: false,
-        },
-        {
-          hour: 9,
+          hour: 12,
           available: true,
         },
         {
-          hour: 10,
+          hour: 13,
           available: false,
         },
         {
-          hour: 11,
+          hour: 14,
+          available: false,
+        },
+        {
+          hour: 15,
           available: true,
         },
       ]),
