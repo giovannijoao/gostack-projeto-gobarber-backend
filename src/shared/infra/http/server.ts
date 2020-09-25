@@ -1,13 +1,14 @@
+import 'dotenv/config';
 import express, { Response, Request, NextFunction } from 'express';
 import 'express-async-errors';
 import 'reflect-metadata';
 import cors from 'cors';
 import AppError from '@shared/errors/AppError';
 import upload from '@config/upload';
+import { errors } from 'celebrate';
 import routes from './routes';
 import '@shared/infra/typeorm';
 import '@shared/container';
-import { errors } from 'celebrate';
 
 const app = express();
 
