@@ -14,7 +14,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/files', express.static(upload.uploadsFolder));
+app.use('/files', express.static(upload.config.disk.uploadsFolder));
 app.get('/', (req, res) =>
   res.json({
     message: 'Hello World',
