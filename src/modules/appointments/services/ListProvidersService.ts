@@ -18,7 +18,6 @@ class ListProvidersService {
       users = await this.usersRepository.findAllUsers({
         expect_user_id: user_id,
       });
-      console.log('Query realizada no banco');
       await this.cacheProvider.save(cacheKey, users);
     }
     return users;
