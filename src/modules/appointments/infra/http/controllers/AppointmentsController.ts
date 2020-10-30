@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { parseISO } from 'date-fns';
 import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
 import { container } from 'tsyringe';
 
@@ -7,10 +6,9 @@ export default class AppointmentsController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { provider_id, date } = request.body;
     const { id: user_id } = request.user;
-    const parsedDate = parseISO(date);
     const createAppointment = container.resolve(CreateAppointmentService);
     const appointment = await createAppointment.execute({
-      date: parsedDate,
+      date,
       provider_id,
       user_id,
     });
