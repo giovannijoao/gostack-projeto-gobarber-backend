@@ -14,8 +14,12 @@ profileRouter.put(
     [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
-      old_password: Joi.string(),
-      password: Joi.string(),
+      old_password: Joi.when('password', {
+        is: (val: string) => !!val.length,
+        then: Joi.required(),
+        otherwise: Joi.not(Joi.required()),
+      }),
+      password: Joi.string().empty('').default(''),
       password_confirmation: Joi.string().valid(Joi.ref('password')),
     },
   }),
