@@ -14,7 +14,6 @@ class ListProvidersService {
   public async execute(user_id: string): Promise<User[]> {
     const cacheKey = `providers-list:${user_id}`;
     let users = await this.cacheProvider.recover<User[]>(cacheKey);
-    users = null;
     if (!users) {
       users = await this.usersRepository.findAllUsers({
         expect_user_id: user_id,
