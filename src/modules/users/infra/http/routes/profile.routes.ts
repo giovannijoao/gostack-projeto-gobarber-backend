@@ -19,7 +19,7 @@ profileRouter.put(
         then: Joi.required(),
         otherwise: Joi.not(Joi.required()),
       }),
-      password: Joi.string().empty('').default(''),
+      password: Joi.string().not(Joi.required()),
       password_confirmation: Joi.string().valid(Joi.ref('password')),
     },
   }),
