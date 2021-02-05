@@ -14,7 +14,7 @@ export default {
       port: process.env.APP_CACHE_REDIS_PORT || 6379,
       host: process.env.APP_CACHE_REDIS_HOST || '127.0.0.1',
       family: process.env.APP_CACHE_REDIS_FAMILY || 4, // 4 (IPv4) or 6 (IPv6)
-      password: process.env.APP_CACHE_REDIS_HOST || undefined,
+      password: process.env.APP_CACHE_REDIS_PASSWORD || undefined,
       db: process.env.APP_CACHE_REDIS_DB,
     },
   },
