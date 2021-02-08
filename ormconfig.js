@@ -7,10 +7,10 @@ module.exports = [{
   "password": process.env.APP_DATABASE_POSTGRES_PASSWORD || "docker",
   "database": process.env.APP_DATABASE_POSTGRES_DATABASE || "gostack_gobarber",
   "entities": [
-    "./src/modules/**/infra/typeorm/entities/*.ts"
+    __dirname + "src/modules/**/infra/typeorm/entities/*{.ts,.js}"
   ],
   "migrations": [
-    "./src/shared/infra/typeorm/migrations/*.ts"
+    __dirname + "src/shared/infra/typeorm/migrations/*{.ts,.js}"
   ],
   "cli": {
     "migrationsDir": "./src/shared/infra/typeorm/migrations"
@@ -22,7 +22,7 @@ module.exports = [{
   "port": process.env.APP_DATABASE_MONGODB_PORT || 27017,
   "database": process.env.APP_DATABASE_MONGODB_DATABASE || "gostack_gobarber",
   "entities": [
-    "./src/modules/**/infra/typeorm/schemas/*.ts"
+    __dirname + "src/modules/**/infra/typeorm/schemas/*.ts"
   ],
   "useUnifiedTopology": true
 }]
